@@ -178,7 +178,7 @@ const getInfoFromURL = (url) => {
   })
 }
 
-const getResultsFromSearch = (keyword) => {
+const getResultsFromSearch = (keyword, type='anime') => {
   return new Promise((resolve, reject) => {
     if (!keyword) {
       reject(new Error('[Mal-Scraper]: Received no keyword to search.'))
@@ -187,7 +187,7 @@ const getResultsFromSearch = (keyword) => {
 
     axios.get(SEARCH_URI, {
       params: {
-        type: 'anime',
+        type: type,
         keyword: keyword.slice(0, 100)
       }
     }).then(({ data }) => {
