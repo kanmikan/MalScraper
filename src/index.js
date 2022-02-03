@@ -16,6 +16,7 @@ module.exports = {
   getNewsNoDetails,
   getInfoFromName,
   getInfoFromURL,
+  getInfoFromCharacterURL,
   getResultsFromSearch,
   getWatchListFromUser,
   getEpisodesList,
