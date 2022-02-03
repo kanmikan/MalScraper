@@ -178,6 +178,31 @@ const getInfoFromURL = (url) => {
   })
 }
 
+//propio////////////////////
+
+const getInfoFromCharacterURL = (url) => {
+	return new Promise((resolve, reject) => {
+	
+		url = encodeURI(url)
+		
+		axios.get(url).then(({data}) => {
+			const res = parseCharacterPageTest(data)
+			resolve(res)
+		}).catch((err) => reject(err))
+	
+	})
+}
+
+const parseCharacterPageTest = (data) => {
+	const $ = cheerio.load(data)
+	const result = {}
+	
+	result.scrape = $("#content > table > tbody > tr > td").last().text();
+	return result;
+}
+
+///////////////////////////////
+
 const getResultsFromSearch = (keyword, type='anime') => {
   return new Promise((resolve, reject) => {
     if (!keyword) {
@@ -239,6 +264,7 @@ const getInfoFromName = (name, getBestMatch = true) => {
 
 module.exports = {
   getInfoFromURL,
+  getInfoFromCharacterURL,
   getResultsFromSearch,
   getInfoFromName
 }
